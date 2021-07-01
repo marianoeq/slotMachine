@@ -15,17 +15,17 @@ Your simple slot machine should do the following:
 
 # Bonus Task #
 * Make the stake adjustable by the player this should change the amount deducted from the balance when pressing spin
-* The stake controls should remain disabled for the duration of the spin and win animations
+* The stake controls should remain disabled for the duration of the spin and win animations   
 
 
 * I have setup a basic PIXI game setup for you which contains the SpinePlugin needed to handle the assets and a tweening engine that we use in the gecko framework
 * I have also included a basic npm package to setup a locally hosted http-server
-* Feel free to modify the environment to your preferances provided their are clear instructions for us to run/build the game
+* Feel free to modify the environment to your preferances provided their are clear instructions for us to run/build the game   
 
 * This test is intended to demonstrate
 	* your creativity
 	* ability to read documentation and implement unfamiliar libraries
-	* coding style (we like OOD)
+	* coding style (we like OOD)   
 
 
 
