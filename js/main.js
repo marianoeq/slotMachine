@@ -14,7 +14,7 @@ let data = [
         "response": {
             "results": {
                 "win": 8,
-                "symbolIDs": [5, 4, 0]
+                "symbolIDs": [5, 5, 5]
             }
         }
     },
@@ -41,7 +41,7 @@ let data = [
         "response": {
             "results": {
                 "win": 2,
-                "symbolIDs": [1, 0]
+                "symbolIDs": [1, 1]
             }
         }
     },
@@ -50,7 +50,7 @@ let data = [
         "response": {
             "results": {
                 "win": 4,
-                "symbolIDs": [2, 1, 0]
+                "symbolIDs": [2, 2, 2]
             }
         }
     },
@@ -68,7 +68,7 @@ let data = [
         "response": {
             "results": {
                 "win": 3,
-                "symbolIDs": [2, 0]
+                "symbolIDs": [2, 2]
             }
         }
     },
@@ -86,7 +86,7 @@ let data = [
         "response": {
             "results": {
                 "win": 8,
-                "symbolIDs": [5, 4, 1]
+                "symbolIDs": [5, 5, 5]
             }
         }
     },
@@ -95,7 +95,7 @@ let data = [
         "response": {
             "results": {
                 "win": 9,
-                "symbolIDs": [5, 3, 2, 1]
+                "symbolIDs": [3, 3, 3, 3]
             }
         }
     },
@@ -104,7 +104,7 @@ let data = [
         "response": {
             "results": {
                 "win": 6,
-                "symbolIDs": [4, 0, 1]
+                "symbolIDs": [4, 4, 4]
             }
         }
     },
@@ -113,7 +113,7 @@ let data = [
         "response": {
             "results": {
                 "win": 1,
-                "symbolIDs": [1]
+                "symbolIDs": [0]
             }
         }
     },
@@ -122,7 +122,7 @@ let data = [
         "response": {
             "results": {
                 "win": 5,
-                "symbolIDs": [1, 2, 3]
+                "symbolIDs": [1, 1, 1]
             }
         }
     },
@@ -140,7 +140,7 @@ let data = [
         "response": {
             "results": {
                 "win": 5,
-                "symbolIDs": [0, 2, 3]
+                "symbolIDs": [2, 2, 2]
             }
         }
     },
@@ -158,7 +158,7 @@ let data = [
         "response": {
             "results": {
                 "win": 6,
-                "symbolIDs": [0, 2, 3]
+                "symbolIDs": [3, 3, 3]
             }
         }
     },
@@ -167,7 +167,7 @@ let data = [
         "response": {
             "results": {
                 "win": 8,
-                "symbolIDs": [0, 1, 2, 5]
+                "symbolIDs": [2, 2, 2, 2]
             }
         }
     },
