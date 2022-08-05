@@ -1,23 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
-<head>
-	<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
 
-	<title>1X2Gaming Task - gecko framework</title>
+    <title>1X2Gaming Task - gecko framework</title>
 
-	<script src="./js/libs/pixi.js"></script>
-	<script src="./js/libs/gsap.min.js"></script>
-	<script src="./js/libs/pixi-spine.js"></script>
+    <script src="./js/libs/pixi.js"></script>
+    <script src="./js/libs/gsap.min.js"></script>
+    <script src="./js/libs/pixi-spine.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-</head>
+  <body>
+    <div id="container" class="container">
+      <h1 id="welcome-title">Welcome to 1x2 Networks casino</h1>
 
-<body>
-	<div id="container" class="container" >
-		
-		<button class="btn-spin" id="btn-spin">Spin your luck</button>
+      <div class="inputs">
+        <input
+		onblur="()=>balance()"
+          type="number"
+          id="inputCredit"
+          placeholder="Insert your credit"
+        />
+        <fieldset>
+          <legend class="legend">Select a bet:</legend>
+          <input type="radio" name="bet" id="10" value="10" />
+          <label>£10</label>
+          <input type="radio" name="bet" id="50" value="50" />
+          <label>£50</label>
+          <input type="radio" name="bet" id="100" value="100" />
+          <label>£100</label>
+        </fieldset>
+		<p id="balance">
+		Balance: £
+		</p>
 	</div>
-	<script type="module" src="./js/main.js"></script>
-</body>
+	<div id="canvas-container">
+		<img src="./assets/handle.png" class="handle-spin" id="handle-spin" />
+	</div>
 
+      <div id="points">
+	
+	  </div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+  </body>
 </html>

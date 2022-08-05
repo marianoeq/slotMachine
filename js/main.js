@@ -1,26 +1,29 @@
 // wait for DOM before creating application
-window.addEventListener("load", function (e) {
-  e.preventDefault();
 
+import data from "./data.js";
+
+window.addEventListener("load", function () {
   //Add the canvas that Pixi automatically created for you to the HTML document
-  const tagContainer = document.getElementById("container");
+  const tagContainer = document.getElementById("canvas-container");
   const app = new PIXI.Application({
-    width: 900,
-    height: 500,
+    width: 800,
+    height: 400,
+    transparent: false,
+    antialias: true,
   });
   tagContainer.appendChild(app.view);
 
   app.loader
-    .add("./assets/symbol_00.png")
-    .add("./assets/symbol_01.png")
-    .add("./assets/symbol_02.png")
-    .add("./assets/symbol_03.png")
+    .add(`./assets/symbol_00.png`)
+    .add(`./assets/symbol_01.png`)
+    .add(`./assets/symbol_02.png`)
+    .add(`./assets/symbol_03.png`)
     .add("./assets/symbol_04.png")
     .add("./assets/symbol_05.png")
     .load(onAssetsLoaded);
 
-  const REEL_WIDTH = 175;
-  const SYMBOL_SIZE = 140;
+  const REEL_WIDTH = 145;
+  const SYMBOL_SIZE = 135;
 
   // onAssetsLoaded handler builds the example.
   function onAssetsLoaded() {
@@ -36,7 +39,9 @@ window.addEventListener("load", function (e) {
 
     // Build the reels
     const reels = [];
+
     const reelContainer = new PIXI.Container();
+
     for (let i = 0; i < 4; i++) {
       const rc = new PIXI.Container();
       rc.x = i * REEL_WIDTH;
@@ -49,19 +54,14 @@ window.addEventListener("load", function (e) {
         previousPosition: 0,
         blur: new PIXI.filters.BlurFilter(),
       };
-      reel.blur.blurX = 0;
-      reel.blur.blurY = 0;
-      rc.filters = [reel.blur];
-
-      console.log(reels);
-
-      console.log(reel);
 
       // Build the symbols
+      //creando contenido de las columnas
       for (let j = 0; j < 4; j++) {
         const symbol = new PIXI.Sprite(
           slotTextures[Math.floor(Math.random() * slotTextures.length)]
         );
+
         // Scale the symbol to fit symbol area.
         symbol.y = j * SYMBOL_SIZE;
         symbol.scale.x = symbol.scale.y = Math.min(
@@ -77,66 +77,34 @@ window.addEventListener("load", function (e) {
     app.stage.addChild(reelContainer);
 
     // Build top & bottom covers and position reelContainer
-    const margin = (app.screen.height - SYMBOL_SIZE * 3) / 2;
+    const margin = (app.screen.height - SYMBOL_SIZE * 2) / 8;
     reelContainer.y = margin;
     reelContainer.x = Math.round(app.screen.width - REEL_WIDTH * 5);
     const top = new PIXI.Graphics();
     top.beginFill(0, 1);
     top.drawRect(0, 0, app.screen.width, margin);
-    /*  const bottom = new PIXI.Graphics();
-    bottom.beginFill(0, 1);
-    bottom.drawRect(0, SYMBOL_SIZE * 3 + margin, app.screen.width, margin);  */
-
-    // Add play text
-    const style = new PIXI.TextStyle({
-      fontFamily: "monospace",
-      fontSize: 36,
-      fontStyle: "italic",
-      fontWeight: "bold",
-      fill: ["#ffffff", "#00ff99"], // gradient
-      stroke: "#4a1850",
-      strokeThickness: 5,
-      dropShadow: true,
-      dropShadowColor: "#000000",
-      dropShadowBlur: 4,
-      dropShadowAngle: Math.PI / 6,
-      dropShadowDistance: 6,
-      wordWrap: true,
-      wordWrapWidth: 440,
-    });
-
-    
-    // Add header text
-    const headerText = new PIXI.Text("1X2 Network Jackpot", style);
-    headerText.x = Math.round((top.width - headerText.width) / 2);
-    headerText.y = Math.round((margin - headerText.height) / 2);
-    top.addChild(headerText);
-    
     app.stage.addChild(top);
-    
+
     // Set the interactivity.
-    
-    const buttonSpin = document.getElementById("btn-spin");
-    buttonSpin.addEventListener("pointerdown", () => {
-      
+
+    const handleSpin = document.getElementById("handle-spin");
+    handleSpin.addEventListener("pointerdown", () => {
       startPlay();
     });
-
     let running = false;
 
     // Function to start playing.
     function startPlay() {
       if (running) return;
       running = true;
+      randomPrize(data);
 
       for (let i = 0; i < reels.length; i++) {
-        
-            console.log("reels:  ",reels)
         const r = reels[i];
         const extra = Math.floor(Math.random() * 3);
         const target = r.position + 10 + i * 5 + extra;
         const time = 500 + i * 600 + extra * 600;
-        
+
         tweenTo(
           r,
           "position",
@@ -146,9 +114,11 @@ window.addEventListener("load", function (e) {
           null,
           i === reels.length - 1 ? reelsComplete : null
         );
-      
+      }
+
+      console.log("reels:  ", reels);
     }
-    }
+
     // Reels done handler.
     function reelsComplete() {
       running = false;
@@ -185,9 +155,9 @@ window.addEventListener("load", function (e) {
       }
     });
   }
-  
+
   // Very simple tweening utility function. This should be replaced with a proper tweening library in a real product.
-  const arr=[]
+
   const tweening = [];
   function tweenTo(
     object,
@@ -208,17 +178,12 @@ window.addEventListener("load", function (e) {
       change: onchange,
       complete: oncomplete,
       start: Date.now(),
-      id:1
     };
 
     tweening.push(tween);
-    console.log("tweeening", tweening);
-    console.log("twen", tween);
-    console.log("arr", tween);
     return tween;
-}
+  }
 
-arr.push(tween.id);
   // Listen for animate update.
   app.ticker.add((delta) => {
     const now = Date.now();
@@ -255,3 +220,41 @@ arr.push(tween.id);
     return (t) => --t * t * ((amount + 1) * t + amount) + 1;
   }
 });
+
+
+function balance(prize) {
+    let inputCredit = Number(document.getElementById("inputCredit").value);
+  let bet;
+  if (document.getElementById("10").checked) {
+    bet = Number(document.getElementById("10").value);
+  } else if (document.getElementById("50").checked) {
+    bet = Number(document.getElementById("50").value);
+  } else {
+    bet = Number(document.getElementById("100").value);
+  }
+
+
+  document.getElementById(
+    "balance"
+  ).innerText = `Balance: £ ${(inputCredit-=bet)}`
+  if (prize > 0) {
+    document.getElementById(
+      "balance"
+    ).innerText = `Balance: £ ${(inputCredit += prize)}`;
+  } 
+}
+
+function randomPrize(data) {
+  const randomWinner = Math.floor(Math.random() * data.length);
+  const prize = data[randomWinner].response.results.win;
+  const divPoints = document.getElementById("points");
+  console.log(prize);
+  setTimeout(() => {
+    balance(prize);
+    if (prize > 0) {
+      divPoints.innerHTML = `Congrats you won ${prize}!!`;
+    } else {
+      divPoints.innerHTML = `You haven't won :(`;
+    }
+  }, 3000);
+}

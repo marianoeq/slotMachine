@@ -1,0 +1,84 @@
+html,body{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden
+  }
+  
+  /* include border and padding in element width and height */
+  * {
+    box-sizing: border-box;
+  }
+
+
+.container{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    background-image: url("./assets/symbols/casino.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+#welcome-title{
+    color: white;
+    margin: .4rem;
+}
+
+#canvas-container{
+    display: flex;
+    justify-content: end;
+    border: 2px solid gold;
+}
+.handle-spin{
+    position: absolute;
+    transition-duration: 0.1s;
+    cursor: grab;
+}
+
+.inputs{
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    margin:2.5rem 0rem; 
+}
+
+fieldset{
+    background-color: rgba(211, 180, 0, 0.686);
+}
+
+.legend, label{
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    
+}
+
+
+
+
+#balance {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 1px solid white;
+    background-color: rgba(211, 180, 0, 0.686);
+    margin: 0;
+    padding: 0rem 5rem;
+}
+
+
+
+#points{
+    color:gold;
+    padding-top:1.5rem
+}
