@@ -221,27 +221,31 @@ window.addEventListener("load", function () {
   }
 });
 
+/* let btnCredit = document.getElementById("btn-credit");
+btnCredit.addEventListener("click", balance); */
+let credit;
 
 function balance(prize) {
-    let inputCredit = Number(document.getElementById("inputCredit").value);
+  let inputCredit = document.getElementById("inputCredit").value;
+  credit = credit ?? Number(inputCredit);
+
   let bet;
-  if (document.getElementById("10").checked) {
+  if (credit >= 10 && document.getElementById("10").checked) {
     bet = Number(document.getElementById("10").value);
-  } else if (document.getElementById("50").checked) {
+  } else if (credit >= 50 && document.getElementById("50").checked) {
     bet = Number(document.getElementById("50").value);
-  } else {
+  } else if (credit >= 100 && document.getElementById("100").checked) {
     bet = Number(document.getElementById("100").value);
   }
+  credit -= bet;
 
-
-  document.getElementById(
-    "balance"
-  ).innerText = `Balance: £ ${(inputCredit-=bet)}`
   if (prize > 0) {
-    document.getElementById(
-      "balance"
-    ).innerText = `Balance: £ ${(inputCredit += prize)}`;
-  } 
+    document.getElementById("balance").innerText = `Balance: £ ${(credit +=
+      prize)}`;
+  }
+  if (prize === 0) {
+    document.getElementById("balance").innerText = `Balance: £ ${credit}`;
+  }
 }
 
 function randomPrize(data) {
@@ -252,7 +256,7 @@ function randomPrize(data) {
   setTimeout(() => {
     balance(prize);
     if (prize > 0) {
-      divPoints.innerHTML = `Congrats you won ${prize}!!`;
+      divPoints.innerHTML = `Congrats you won £ ${prize}!!`;
     } else {
       divPoints.innerHTML = `You haven't won :(`;
     }
